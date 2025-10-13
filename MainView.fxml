@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="MainController">
+<top>
+<ToolBar>
+<Label text="Nurse:"/>
+<ComboBox fx:id="cbNurse" prefWidth="150"/>
+<Separator orientation="VERTICAL"/>
+<Label text="Doctor:"/>
+<ComboBox fx:id="cbDoctor" prefWidth="150"/>
+<Separator orientation="VERTICAL"/>
+<Label text="Manager:"/>
+<ComboBox fx:id="cbManager" prefWidth="180"/>
+<Separator orientation="VERTICAL"/>
+<Button text="Check Compliance" onAction="#onCheckCompliance"/>
+<Label text=" Status:"/>
+<Label fx:id="lblStatus" style="-fx-font-weight: bold;"/>
+</ToolBar>
+</top>
+
+<center>
+<ScrollPane fitToWidth="true">
+<GridPane fx:id="gridBeds"/>
+</ScrollPane>
+</center>
+
+<left>
+<TitledPane text="Resident Ops" expanded="true">
+<VBox spacing="6">
+<padding>
+<Insets top="10" right="10" bottom="10" left="10"/>
+</padding>
+<Label text ="Add Resident to Bed"/>
+<TextField fx:id="tfResidentId" promptText="Resident ID"/>
+<TextField fx:id="tfResidentName" promptText="Name"/>
+<ComboBox fx:id="cbGender" promptText="Gender"/>
+<TextField fx:id="tfBedCode" promptText="Bed Code e.g. W1-R1-B1"/>
+<Button text="Add Resident" onAction="#onAddResidentToBed"/>
+
+<Separator/>
+<Label text="Nurse Move Resident"/>
+<TextField fx:id="tfMoveFrom" promptText="From Bed: W1-R1-B1"/>
+<TextField fx:id="tfMoveTo" promptText="To Bed: W2-R3-B2"/>
+<Button text="Move" onAction="#onNurseMoveResident"/>
+</VBox>
+</TitledPane>
+</left>
+
+<right>
+<TabPane tabClosingPolicy="UNAVAILABLE">
+<Tab text="Prescription">
+<VBox spacing="6">
+<padding>
+<Insets top="10" right="10" bottom="10" left="10"/>
+</padding>
+<Label text="Doctor Add/Update Prescription"/>
+<TextField fx:id="tfRxBedCode" promptText="Bed code (for Add)"/>
+<TextField fx:id="tfRxId" promptText="Rx Id (for Update)"/>
+<TextField fx:id="tfMed" promptText="Medicine"/>
+<TextField fx:id="tfDose" promptText="Dose (e.g:500mg)"/>
+<TextField fx:id="tfTime" promptText="Time (HH:mm)"/>
+<HBox spacing="8">
+<Button text="Add Rx" onAction="#onDoctorAddRx"/>
+</HBox>
+
+<Separator/>
+<Label text="Prescriptions for selected Bed"/>
+<ListView fx:id="lvRx" prefHeight="140"/>
+<Separator/>
+
+<Separator/>
+
+<Button text="Save to File" onAction="#onSaveToFile"/>
+</VBox>
+</Tab>
+
+
+<Tab text="Staff">
+<VBox spacing="6">
+<padding>
+<Insets top="10" right="10" bottom="10" left="10"/>
+</padding>
+<Label text="Manager: Update Staff Credentials"/>
+<ComboBox fx:id="cbTargetStaff" promptText="Target Staff"/>
+<TextField fx:id="tfNewUser" promptText="New username"/>
+<PasswordField fx:id="pfNewPass" promptText="new password"/>
+<Button text="Update Credentials" onAction="#onManagerUpdateStaffCreds"/>
+</VBox>
+</Tab>
+</TabPane>
+</right>
+
+<bottom>
+<TitledPane text="Audit Log" expanded="false">
+<TextArea fx:id="txtAudit" prefRowCount="6" wrapText="true"/>
+</TitledPane>
+</bottom>
+</BorderPane> 
